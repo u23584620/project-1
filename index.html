@@ -1,8 +1,125 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title> First Page</title>
-    </head>
-    <body bgcolor = "green">
-        <h1> This is my first web page </h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>First Page</title>
+    <style>
+        body {
+            background-color: rgb(182, 236, 182);
+            color: rgb(17, 15, 15);
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            border: 1px solid #0f0e0e;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .image-tabs-container {
+            position: relative;
+            width: 100vw;
+            height: auto;
+        }
+        .tabs-container {
+            position: absolute;
+            top: 20px; /* distance from top of image */
+            left: 40px; /* distance from left of image */
+            z-index: 2;
+            background: rgba(255,255,255,0.7); /* optional: semi-transparent background */
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .tab-content {
+            display: none;
+            position: absolute;
+            top: 55%; /* Center vertically over the image */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            background: #fff;
+            color: #111;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding: 32px 24px;
+            z-index: 3;
+        }
+        .active {
+            display: block;
+        }
+        form input,
+        form textarea {
+            margin-bottom: 12px;
+            width: 80%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .main-image {
+            width: 100vw;
+            height: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        function showTab(tabId) {
+            var tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            var activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="image-tabs-container">
+        <img src="images/19.png" alt="Kaizen Clothing" class="main-image">
+        <div class="tabs-container">
+            <span class="tab" onclick="showTab('tab1-content')">Our Products</span>
+            <span class="tab" onclick="showTab('tab2-content')">Our Mission</span>
+            <span class="tab" onclick="showTab('tab3-content')">About Us</span>
+            <span class="tab" onclick="showTab('tab4-content')">Contact</span>
+        </div>
+        <div id="tab1-content" class="tab-content">
+            <h2>Our Products</h2>
+            <p>Explore our range of sustainable clothing designed for comfort and style.</p>
+            <ul>
+                <li>Eco-friendly fabrics</li>
+                <li>Inclusive sizing</li>
+                <li>Modern designs</li>
+            </ul>
+        </div>
+        <div id="tab2-content" class="tab-content">
+            <h2>Our Mission</h2>
+            <p>At Kaizen Clothing, we are committed to providing sustainable fashion that is accessible to everyone.</p>
+            <p>We believe in using eco-friendly materials and inclusive sizing to create modern designs that last.</p>
+        </div>
+        <div id="tab3-content" class="tab-content">
+            <h2>About Us</h2>
+            <p>Welcome to Kaizen Clothing! We offer sustainable fashion for everyone.</p>
+            <ul>
+                <li>Eco-friendly materials</li>
+                <li>Inclusive sizing</li>
+                <li>Modern designs</li>
+            </ul>
+        </div>
+        <div id="tab4-content" class="tab-content">
+            <form action="/submit" method="post">
+                <input type="text" name="name" placeholder="Your Name"><br>
+                <input type="email" name="email" placeholder="Your Email"><br>
+                <textarea name="message" placeholder="Message"></textarea><br>
+                <button type="submit">Send</button>
+            </form>
+                <textarea placeholder="Message"></textarea><br>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>
